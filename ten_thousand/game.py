@@ -45,8 +45,8 @@ def start_game(roller):
     round = 1
     dice_num = 6
     total_score = 0
-    new_round(round)
-    new_roll(roller, dice_num)
+    # new_round(round)
+    new_roll(roller, dice_num, round)
     print("Enter dice to keep, or (q)uit:")
     player_input = input("> ")
     handle_player_input(player_input, dice_num,
@@ -73,7 +73,8 @@ def new_round(round):
     print(f"Starting round {round}")
 
 
-def new_roll(roller, dice_num):
+def new_roll(roller, dice_num, round):
+    new_round(round)
     print(f"Rolling {dice_num} dice...")
     dice_roll = roller(dice_num)
     print(f"*** {format_roll(dice_roll)} ***")
@@ -97,34 +98,42 @@ def handle_player_input(player_input, dice_num, round, total_score, roller):
     until the game is ended or the player decides to bank their points.
     """
 
-
-
-
     if player_input == 'q':
         print(f"Thanks for playing. You earned {total_score} points")
     else:
         formated_user_input = format_user_input(player_input)
         unbanked_score = GameLogic.calculate_score(formated_user_input)
-
+        remaining_dices = calculate_remaining_dices(
+            dice_num, formated_user_input)
         print(
-            f"You have {unbanked_score} unbanked points and {calculate_remaining_dices(dice_num,formated_user_input)} dice remaining")
+            f"You have {unbanked_score} unbanked points and {remaining_dices} dice remaining")
         print("(r)oll again, (b)ank your points or (q)uit:")
         player_input = input("> ")
-        
+
         if player_input == 'r':
-            new_roll(roller, dice_num)
-            
+            round += 1
+            dice_num = remaining_dices
+            new_roll(roller, dice_num, round)
+            print("Enter dice to keep, or (q)uit:")
+            player_input = input("> ")
+            handle_player_input(player_input, dice_num, round, total_score, roller)
+
+
         elif player_input == 'b':
             print(f"You banked {unbanked_score} points in round {round}")
             total_score += unbanked_score
             round += 1
             print(f"Total score is {total_score} points")
-            new_round(round)
-            new_roll(roller, dice_num)
+            # new_round(round)
+            new_roll(roller, dice_num, round)
             print("Enter dice to keep, or (q)uit:")
             player_input = input("> ")
             handle_player_input(player_input, dice_num,
                                 round, total_score, roller)
-            
+
         elif player_input == 'q':
             print(f"Thanks for playing. You earned {total_score} points")
+
+
+if __name__ == "__main__":
+    play()
