@@ -423,3 +423,8 @@ Explanation of `roll_dice` method:
 
 - We use a list comprehension to generate `num_dice` random integers between 1 and 6 using `random.randint()`.
 - We convert the list to a tuple and return it.
+# Lab 7:
+used it just to generate docstring for methods and fix some bugs
+prompts:
+- Generate docstring
+- Explain tests
