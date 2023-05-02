@@ -45,7 +45,7 @@ def start_game(roller):
     round = 1
     dice_num = 6
     total_score = 0
-    # new_round(round)
+    new_round(round)
     new_roll(roller, dice_num, round)
     print("Enter dice to keep, or (q)uit:")
     player_input = input("> ")
@@ -74,7 +74,7 @@ def new_round(round):
 
 
 def new_roll(roller, dice_num, round):
-    new_round(round)
+    # new_round(round)
     print(f"Rolling {dice_num} dice...")
     dice_roll = roller(dice_num)
     print(f"*** {format_roll(dice_roll)} ***")
@@ -102,7 +102,7 @@ def handle_player_input(player_input, dice_num, round, total_score, roller):
         print(f"Thanks for playing. You earned {total_score} points")
     else:
         formated_user_input = format_user_input(player_input)
-        unbanked_score = GameLogic.calculate_score(formated_user_input)
+        unbanked_score = GameLogic.calculate_score(formated_user_input) 
         remaining_dices = calculate_remaining_dices(
             dice_num, formated_user_input)
         print(
@@ -111,7 +111,7 @@ def handle_player_input(player_input, dice_num, round, total_score, roller):
         player_input = input("> ")
 
         if player_input == 'r':
-            round += 1
+            # round += 1
             dice_num = remaining_dices
             new_roll(roller, dice_num, round)
             print("Enter dice to keep, or (q)uit:")
@@ -124,7 +124,7 @@ def handle_player_input(player_input, dice_num, round, total_score, roller):
             total_score += unbanked_score
             round += 1
             print(f"Total score is {total_score} points")
-            # new_round(round)
+            new_round(round)
             new_roll(roller, dice_num, round)
             print("Enter dice to keep, or (q)uit:")
             player_input = input("> ")
