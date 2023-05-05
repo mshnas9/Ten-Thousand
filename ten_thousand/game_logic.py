@@ -74,8 +74,8 @@ class GameLogic:
             test_score = GameLogic.calculate_score(test_rolls)
             if test_score < full_score:
                 scorers.append(test_input[i])
-        scorers_tuple = tuple(scorers)
-        return scorers_tuple
+        
+        return tuple(scorers)
 
     def validate_keepers(roll, keepers):
         """
