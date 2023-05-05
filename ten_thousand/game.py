@@ -1,18 +1,18 @@
 from ten_thousand.game_logic import GameLogic
 
 
-def play(roller=GameLogic.roll_dice):
+def play(roller=GameLogic.roll_dice, num_rounds=20):
     print("Welcome to Ten Thousand")
     print("(y)es to play or (n)o to decline")
     player_input = input("> ")
     if player_input == 'y':
-        start_game(roller)
+        start_game(roller,num_rounds)
     elif player_input == 'n':
         print("OK. Maybe another time")
 
 
-def start_game(roller):
-    max_rounds = 3
+def start_game(roller, num_rounds):
+    max_rounds = num_rounds
     total_score = 0
 
     for round in range(1, max_rounds + 1):
@@ -71,6 +71,7 @@ def start_game(roller):
                         f"Thanks for playing. You earned {total_score} points")
                     return
         if round == max_rounds or total_score >= 10000:
+            print(f"Thanks for playing. You earned {total_score} points")
             break
 
 
@@ -105,12 +106,6 @@ def zilch():
     print("****************************************")
     print("**        Zilch!!! Round over         **")
     print("****************************************")
-
-
-# def format_keepers(keeper_string):
-#     values = [int(value) for value in keeper_string if value.isdigit()]
-#     return tuple(values)
-
 
 if __name__ == "__main__":
     play()
