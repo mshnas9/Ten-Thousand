@@ -5,7 +5,7 @@
 ### Author: Mohamad Shareef Naser & Mohammad Shahin
 ---
 ### Links and Resources
-[PR link](https://github.com/mshnas9/Ten-Thousand/pull/4)
+[PR link (lab 07 + lab 08)](https://github.com/mshnas9/Ten-Thousand/pull/6)
 
 ### Setup
 You need to [install Python3](https://wsvincent.com/install-python/#install-python-on-linux) to run this project
