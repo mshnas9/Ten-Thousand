@@ -1,18 +1,20 @@
 from ten_thousand.game_logic import GameLogic
 
 
-def play(roller=GameLogic.roll_dice):
+def play(roller=GameLogic.roll_dice, num_rounds=20):
+    """Starts the game, asks the player if they want to play and begins the game."""
     print("Welcome to Ten Thousand")
     print("(y)es to play or (n)o to decline")
     player_input = input("> ")
     if player_input == 'y':
-        start_game(roller)
+        start_game(roller, num_rounds)
     elif player_input == 'n':
         print("OK. Maybe another time")
 
 
-def start_game(roller):
-    max_rounds = 3
+def start_game(roller, num_rounds):
+    """Starts a game of Ten Thousand."""
+    max_rounds = num_rounds
     total_score = 0
 
     for round in range(1, max_rounds + 1):
@@ -71,30 +73,36 @@ def start_game(roller):
                         f"Thanks for playing. You earned {total_score} points")
                     return
         if round == max_rounds or total_score >= 10000:
+            print(f"Thanks for playing. You earned {total_score} points")
             break
 
 
 def format_roll(dice_roll):
+    """Formats the dice roll for output."""
     dice_roll_str = [str(i) for i in dice_roll]
     roll = ' '.join(dice_roll_str)
     return roll
 
 
 def format_user_input(num):
+    """Formats the user input for validation."""
     num = [char for char in str(num) if char.isdigit()]
     num_tuple = tuple(map(int, num))
     return num_tuple
 
 
 def calculate_remaining_dices(dice_num, formated_user_input):
+    """Calculate the number of remaining dices after the user has selected which ones to keep."""
     return dice_num - len(formated_user_input)
 
 
 def new_round(round):
+    """Print the start of a new round."""
     print(f"Starting round {round}")
 
 
 def new_roll(roller, dice_num):
+    """Roll a number of dices and return the results."""
     print(f"Rolling {dice_num} dice...")
     dice_roll = roller(dice_num)
     print(f"*** {format_roll(dice_roll)} ***")
@@ -102,15 +110,10 @@ def new_roll(roller, dice_num):
 
 
 def zilch():
+    """Zilch message, appear when the dices have no scores """
     print("****************************************")
     print("**        Zilch!!! Round over         **")
     print("****************************************")
-
-
-# def format_keepers(keeper_string):
-#     values = [int(value) for value in keeper_string if value.isdigit()]
-#     return tuple(values)
-
 
 if __name__ == "__main__":
     play()

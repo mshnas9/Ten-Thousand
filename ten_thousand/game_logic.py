@@ -63,7 +63,7 @@ class GameLogic:
         dice = tuple(random.randint(1, 6) for _ in range(num_dice))
         return dice
 
-    def get_scorers(test_input: Tuple[int, ...]) -> Tuple[int, ...]:
+    def get_scorers(test_input):
         full_score = GameLogic.calculate_score(test_input)
         scorers = []
 

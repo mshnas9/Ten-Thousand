@@ -5,6 +5,7 @@
 ### Author: Mohamad Shareef Naser & Mohammad Shahin
 ---
 ### Links and Resources
+[PR link (lab 09)](https://github.com/mshnas9/Ten-Thousand/pull/7)
 [PR link (lab 07 + lab 08)](https://github.com/mshnas9/Ten-Thousand/pull/6)
 
 ### Setup
